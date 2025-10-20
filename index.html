@@ -3,56 +3,150 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nathan “BAS” Evans | Conceptual Artist</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Nathan “BAS’” Evans — Conceptual Artist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --bg: #0a0a0a;
+      --text: #f3f3f3;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.8;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 50px;
+      border-bottom: 1px solid var(--gold);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      color: var(--gold);
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      color: var(--text);
+      margin-top: 0;
+      opacity: 0.8;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .bio {
+      font-size: 1.1em;
+      text-align: justify;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 60px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid var(--gold);
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+  </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="overlay"></div>
-    <div class="hero-text">
-      <h1>Nathan “BAS” Evans</h1>
-      <p>Conceptual Artist & Philosopher</p>
-    </div>
+  <header class="fade-in">
+    <h1>Nathan “BAS’” Evans</h1>
+    <h2>Conceptual Artist & Philosopher</h2>
   </header>
 
-  <section class="bio fade-in">
-    <h2>Artist Bio</h2>
-    <p>
-      Nathan “BAS” Evans (pronounced bazz) is an African American conceptual artist and philosopher based in Virginia.
-      His work confronts the contradictions between faith, identity, and existence — investigating how belief,
-      consciousness, and abandonment shape the human condition. Every piece begins on paper, where thought becomes
-      physical and reflection turns into form. For Evans, paper is not merely a surface but a witness — the first site
-      where language, theology, and psychology collide before finding shape on canvas.
+  <section class="fade-in delay-1">
+    <p class="bio">
+      Nathan “BAS’” Evans (pronounced bazz) is an African American conceptual artist and philosopher based in Virginia. 
+      His work confronts the contradictions between faith, identity, and existence — investigating how belief, consciousness, 
+      and abandonment shape the human condition. Every piece begins on paper, where thought becomes physical and reflection 
+      turns into form. For Evans, paper is not merely a surface but a witness — the first site where language, theology, 
+      and psychology collide before finding shape on canvas.
     </p>
-    <p>
-      Guided by inquiry rather than certainty, Evans transforms art into a field of confrontation — a dialogue between
-      the divine and the disillusioned. His minimalist compositions and coded symbolism create visual theologies of
-      doubt, revelation, and resistance. Through this process, Evans exposes the tension between what we confess and
-      what we conceal — between the stories we inherit and the truths we fear to name.
+
+    <p class="bio">
+      Guided by inquiry rather than certainty, Evans transforms art into a field of confrontation — a dialogue between the 
+      divine and the disillusioned. His minimalist compositions and coded symbolism create visual theologies of doubt, 
+      revelation, and resistance. Through this process, Evans exposes the tension between what we confess and what we conceal — 
+      between the stories we inherit and the truths we fear to name.
     </p>
-    <p>
-      His artistic mission is to dismantle illusion and awaken awareness. Evans aims to expose the structures that
-      preserve spiritual and societal complacency, transforming them into opportunities for revelation. Each work stands
-      as both scripture and rebellion — a visual act of faith in the pursuit of unfiltered truth.
+
+    <p class="bio">
+      His artistic mission is to dismantle illusion and awaken awareness. Evans aims to expose the structures that preserve 
+      spiritual and societal complacency, transforming them into opportunities for revelation. Each work stands as both 
+      scripture and rebellion — a visual act of faith in the pursuit of unfiltered truth.
     </p>
   </section>
 
-  <section class="gallery fade-in">
-    <h2>Art Gallery</h2>
-    <div class="grid">
-      <img src="images/art1.jpg" alt="Artwork 1" />
-      <img src="images/art2.jpg" alt="Artwork 2" />
-      <img src="images/art3.jpg" alt="Artwork 3" />
-      <img src="images/art4.jpg" alt="Artwork 4" />
+  <section class="fade-in delay-2">
+    <h2 style="color: var(--gold); text-align:center; margin-bottom:40px;">Gallery</h2>
+    <div class="gallery">
+      <img src="art1.jpg" alt="Artwork 1">
+      <img src="art2.jpg" alt="Artwork 2">
+      <img src="art3.jpg" alt="Artwork 3">
+      <img src="art4.jpg" alt="Artwork 4">
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Nathan “BAS” Evans | Conceptual Art & Philosophy</p>
+  <footer class="fade-in delay-3">
+    © 2025 Nathan “BAS’” Evans. All rights reserved.
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.style.opacity = '1';
+      });
+    }, { threshold: 0.2 });
+    elements.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
+
 
