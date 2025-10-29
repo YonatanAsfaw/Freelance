@@ -1,268 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nathan “BAS’” Evans — Conceptual Artist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: #d4af37;
-      --accent1: #ff6f61;
-      --accent2: #6b7eff;
-      --accent3: #6affc1;
-      --bg: #111111; /* black background */
-      --text: #ffffff; /* text white for contrast */
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nathan “BAS’” Evans — Conceptual Artist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #d4af37;
+    --accent1: #ff6f61;
+    --accent2: #6b7eff;
+    --accent3: #6affc1;
+    --bg: #111111; /* true black background */
+    --text: #ffffff;
+  }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg);
-      font-family: 'Fira Code', monospace;
-      color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.7;
-    }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Fira Code', monospace;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
 
-    * { box-sizing: border-box; }
+  * { box-sizing: border-box; }
 
-    /* Intro Screen */
-    #intro-screen {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 9999;
-      transition: opacity 1s ease;
-      background: linear-gradient(135deg, #330033, #220011);
-      animation: gradientPulse 8s infinite alternate;
-    }
+  /* Intro Screen */
+  #intro-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 9999;
+    transition: opacity 1s ease;
+    background: linear-gradient(135deg, #110011, #220022);
+    animation: gradientPulse 8s infinite alternate;
+  }
 
-    @keyframes gradientPulse {
-      0% { background: linear-gradient(135deg, #330033, #220011); }
-      50% { background: linear-gradient(135deg, #440044, #002244); }
-      100% { background: linear-gradient(135deg, #550055, #004422); }
-    }
+  @keyframes gradientPulse {
+    0% { background: linear-gradient(135deg, #110011, #220022); }
+    50% { background: linear-gradient(135deg, #220022, #002222); }
+    100% { background: linear-gradient(135deg, #330033, #004422); }
+  }
 
-    #intro-screen h1 {
-      color: var(--gold);
-      font-size: 3em;
-      margin-bottom: 25px;
-      letter-spacing: 2px;
-      font-family: 'Playfair Display', serif;
-      text-shadow: 0 0 12px var(--gold);
-    }
+  #intro-screen h1 {
+    color: var(--gold);
+    font-size: 3em;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 0 0 12px var(--gold);
+  }
 
-    #intro-screen p {
-      font-size: 1.3em;
-      font-weight: 500;
-      margin: 12px 0;
-      animation: floatColors 6s infinite alternate;
-    }
+  #intro-screen p {
+    font-size: 1.3em;
+    font-weight: 500;
+    margin: 12px 0;
+    animation: floatColors 6s infinite alternate;
+  }
 
-    #intro-screen p:nth-child(2) { color: var(--accent1); }
-    #intro-screen p:nth-child(3) { color: var(--accent2); }
-    #intro-screen p:nth-child(4) { color: var(--accent3); }
+  #intro-screen p:nth-child(2) { color: var(--accent1); }
+  #intro-screen p:nth-child(3) { color: var(--accent2); }
+  #intro-screen p:nth-child(4) { color: var(--accent3); }
 
-    @keyframes floatColors {
-      0% { transform: translateY(0px); text-shadow: 0 0 8px currentColor; }
-      50% { transform: translateY(-6px); text-shadow: 0 0 15px currentColor; }
-      100% { transform: translateY(0px); text-shadow: 0 0 8px currentColor; }
-    }
+  @keyframes floatColors {
+    0% { transform: translateY(0px); text-shadow: 0 0 8px currentColor; }
+    50% { transform: translateY(-6px); text-shadow: 0 0 15px currentColor; }
+    100% { transform: translateY(0px); text-shadow: 0 0 8px currentColor; }
+  }
 
-    #intro-screen button {
-      margin-top: 40px;
-      padding: 14px 35px;
-      border: none;
-      border-radius: 6px;
-      background: linear-gradient(45deg, var(--accent1), var(--accent2), var(--accent3));
-      color: #111;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 1.1em;
-      letter-spacing: 1px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background-size: 300% 300%;
-      animation: gradientMove 4s ease infinite;
-    }
+  #intro-screen button {
+    margin-top: 40px;
+    padding: 14px 35px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(45deg, var(--accent1), var(--accent2), var(--accent3));
+    color: #111;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-size: 300% 300%;
+    animation: gradientMove 4s ease infinite;
+  }
 
-    #intro-screen button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px #fff;
-    }
+  #intro-screen button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #fff;
+  }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-    #main-site { opacity: 0; transition: opacity 1.2s ease; }
+  #main-site { opacity: 0; transition: opacity 1.2s ease; }
 
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 20px;
-      right: 40px;
-      z-index: 10;
-    }
+  nav { position: fixed; top: 20px; right: 40px; z-index: 10; }
+  nav a { color: var(--text); text-decoration: none; margin: 0 10px; opacity: 0.8; transition: opacity 0.3s ease; }
+  nav a:hover { opacity: 1; }
 
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      margin: 0 10px;
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
+  header.hero {
+    height: 100vh;
+    background: url('images/artwork1.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
 
-    nav a:hover { opacity: 1; }
+  .hero-text { position: relative; text-align: center; z-index: 1; }
+  .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 3em; color: var(--gold); margin-bottom: 10px; }
+  .hero-text p { opacity: 0.85; font-size: 1.2em; color: #fff; }
 
-    /* Hero */
-    header.hero {
-      height: 100vh;
-      background: url('images/artwork1.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
+  section {
+    max-width: 950px;
+    margin: 100px auto;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  section h2 { color: var(--gold); font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 40px; font-size: 2em; }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35); /* darker overlay for black theme */
-    }
+  .gallery-filters { text-align: center; margin-bottom: 30px; }
+  .gallery-filters button {
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 15px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .gallery-filters button:hover { background: var(--gold); color: var(--bg); }
 
-    .hero-text {
-      position: relative;
-      text-align: center;
-      z-index: 1;
-    }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+  .gallery-grid img { width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+  .gallery-grid img:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(212,175,55,0.3); }
 
-    .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3em;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
+  .theory-item { margin-bottom: 40px; }
+  .theory-item h3 { color: var(--accent2); font-family: 'Playfair Display', serif; }
 
-    .hero-text p { opacity: 0.85; font-size: 1.2em; color: #fff; }
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  #contact-form input, #contact-form textarea {
+    background: #222;
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: var(--text);
+    padding: 12px;
+    font-size: 1em;
+  }
+  #contact-form button {
+    background: linear-gradient(45deg, var(--accent1), var(--accent2), var(--accent3));
+    border: none;
+    color: #111;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-size: 300% 300%;
+    animation: gradientMove 4s ease infinite;
+  }
+  #contact-form button:hover { transform: scale(1.05); box-shadow: 0 0 20px #00000033; }
 
-    /* Sections */
-    section {
-      max-width: 950px;
-      margin: 100px auto;
-      padding: 0 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
+  footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--gold); opacity: 0.8; font-size: 0.9em; color: #fff; }
 
-    section h2 {
-      color: var(--gold);
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2em;
-    }
-
-    /* Gallery */
-    .gallery-filters { text-align: center; margin-bottom: 30px; }
-    .gallery-filters button {
-      background: none;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      padding: 6px 15px;
-      margin: 0 5px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .gallery-filters button:hover {
-      background: var(--gold);
-      color: var(--bg);
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-    .gallery-grid img {
-      width: 100%;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(212,175,55,0.3);
-    }
-
-    /* Theories */
-    .theory-item { margin-bottom: 40px; }
-    .theory-item h3 { color: var(--accent2); font-family: 'Playfair Display', serif; }
-
-    /* Contact */
-    #contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    #contact-form input,
-    #contact-form textarea {
-      background: #222;
-      border: 1px solid #555;
-      border-radius: 5px;
-      color: var(--text);
-      padding: 12px;
-      font-size: 1em;
-    }
-    #contact-form button {
-      background: linear-gradient(45deg, var(--accent1), var(--accent2), var(--accent3));
-      border: none;
-      color: #111;
-      font-weight: 700;
-      padding: 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background-size: 300% 300%;
-      animation: gradientMove 4s ease infinite;
-    }
-    #contact-form button:hover { transform: scale(1.05); box-shadow: 0 0 20px #00000033; }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid var(--gold);
-      opacity: 0.8;
-      font-size: 0.9em;
-      color: #fff;
-    }
-
-    /* Modal for images */
-    .overlay-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .overlay-modal img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(212,175,55,0.3);
-    }
-  </style>
+  .overlay-modal {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+  }
+  .overlay-modal img {
+    max-width: 90%; max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(212,175,55,0.3);
+  }
+</style>
 </head>
 <body>
 
@@ -343,11 +274,9 @@
 </div>
 
 <script>
-  // Entry transition
   const introScreen = document.getElementById('intro-screen');
   const mainSite = document.getElementById('main-site');
-  const enterBtn = document.getElementById('enter-site');
-  enterBtn.addEventListener('click', () => {
+  document.getElementById('enter-site').addEventListener('click', () => {
     introScreen.style.opacity = 0;
     setTimeout(() => {
       introScreen.style.display = 'none';
@@ -355,7 +284,6 @@
     }, 800);
   });
 
-  // Fade-in scroll
   const fadeElements = document.querySelectorAll('section');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -367,7 +295,6 @@
   }, { threshold: 0.2 });
   fadeElements.forEach(el => observer.observe(el));
 
-  // Gallery Filter
   const buttons = document.querySelectorAll('.gallery-filters button');
   const images = document.querySelectorAll('.gallery-grid img');
   buttons.forEach(btn => {
@@ -379,7 +306,6 @@
     });
   });
 
-  // Image enlarge modal
   document.querySelectorAll(".gallery-grid img").forEach(img => {
     img.addEventListener("click", () => {
       const overlay = document.createElement("div");
