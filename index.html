@@ -11,14 +11,14 @@
       --accent1: #ff6f61;
       --accent2: #6b7eff;
       --accent3: #6affc1;
-      --bg: #ffffff;
-      --text: #111111;
+      --bg: #111111; /* black background */
+      --text: #ffffff; /* text white for contrast */
     }
 
     html, body {
       margin: 0;
       padding: 0;
-      background-color: var(--bg) !important;
+      background-color: var(--bg);
       font-family: 'Fira Code', monospace;
       color: var(--text);
       overflow-x: hidden;
@@ -38,14 +38,14 @@
       text-align: center;
       z-index: 9999;
       transition: opacity 1s ease;
-      background: linear-gradient(135deg, #f5f0ff, #ffeaea);
+      background: linear-gradient(135deg, #330033, #220011);
       animation: gradientPulse 8s infinite alternate;
     }
 
     @keyframes gradientPulse {
-      0% { background: linear-gradient(135deg, #f5f0ff, #ffeaea); }
-      50% { background: linear-gradient(135deg, #fffae6, #e6faff); }
-      100% { background: linear-gradient(135deg, #ffe6ff, #e6ffe6); }
+      0% { background: linear-gradient(135deg, #330033, #220011); }
+      50% { background: linear-gradient(135deg, #440044, #002244); }
+      100% { background: linear-gradient(135deg, #550055, #004422); }
     }
 
     #intro-screen h1 {
@@ -134,7 +134,7 @@
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(255,255,255,0.35); /* lighter overlay */
+      background: rgba(0,0,0,0.35); /* darker overlay for black theme */
     }
 
     .hero-text {
@@ -150,7 +150,7 @@
       margin-bottom: 10px;
     }
 
-    .hero-text p { opacity: 0.85; font-size: 1.2em; }
+    .hero-text p { opacity: 0.85; font-size: 1.2em; color: #fff; }
 
     /* Sections */
     section {
@@ -216,8 +216,8 @@
     }
     #contact-form input,
     #contact-form textarea {
-      background: #f0f0f0;
-      border: 1px solid #ccc;
+      background: #222;
+      border: 1px solid #555;
       border-radius: 5px;
       color: var(--text);
       padding: 12px;
@@ -243,6 +243,7 @@
       border-top: 1px solid var(--gold);
       opacity: 0.8;
       font-size: 0.9em;
+      color: #fff;
     }
 
     /* Modal for images */
