@@ -1,384 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nathan “BAS’” Evans — Conceptual Artist</title>
-  <!-- Monospace Font -->
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nathan “BAS’” Evans</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --gold: #d4af37;
-      --bg: #000;
-      --text: #f3f3f3;
-      --accent: #b5a06c;
-    }
+    /* Global */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-    * { box-sizing: border-box; }
+    /* Navigation */
+    nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; gap: 30px; font-weight: 500; font-size: 1rem; opacity: 0; transition: opacity 0.5s; }
+    nav.show { opacity: 1; }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'IBM Plex Mono', monospace;
-      overflow-x: hidden;
-      line-height: 1.7;
+    /* Entry Screen */
+    #entry-screen { 
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      height: 100vh; text-align: center; padding: 20px; transition: opacity 1s;
     }
+    #entry-screen h1 { font-size: 2rem; margin-bottom: 30px; }
+    .question { font-size: 1.5rem; margin: 15px 0; cursor: pointer; transition: transform 0.3s; }
+    .question:hover { transform: scale(1.05); }
+    #enter-btn { margin-top: 40px; padding: 10px 30px; font-size: 1rem; background: #fff; color: #000; border: none; cursor: pointer; transition: background 0.3s; }
+    #enter-btn:hover { background: #ccc; }
 
-    /* Intro / “The Gate” */
-    #intro-screen {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 9999;
-      transition: opacity 1s ease;
-    }
+    /* Sections */
+    section { min-height: 100vh; padding: 80px 20px; }
+    #homepage { display: flex; justify-content: center; align-items: center; text-align: center; background: url('your-artwork.jpg') center/cover no-repeat; }
+    #homepage h1 { font-size: 3rem; background: rgba(0,0,0,0.5); padding: 20px; }
 
-    #intro-screen h1 {
-      color: var(--gold);
-      font-size: 2.5em;
-      margin-bottom: 25px;
-      letter-spacing: 1px;
-    }
+    /* Gallery */
+    #gallery { background-color: #111; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .gallery-item { position: relative; overflow: hidden; cursor: pointer; }
+    .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.5s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item .info { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.7); padding: 10px; opacity: 0; transition: opacity 0.3s; }
+    .gallery-item:hover .info { opacity: 1; }
 
-    #intro-screen p {
-      font-size: 1.2em;
-      opacity: 0.85;
-      margin: 8px 0;
-    }
+    /* Bio */
+    #bio { background-color: #000; max-width: 800px; margin: auto; line-height: 1.8; }
+    #bio h2 { margin-bottom: 20px; font-size: 2rem; text-align: center; }
 
-    #intro-screen button {
-      margin-top: 35px;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 4px;
-      background: var(--gold);
-      color: var(--bg);
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    #intro-screen button:hover {
-      transform: scale(1.05);
-    }
-
-    #main-site {
-      opacity: 0;
-      transition: opacity 1.2s ease;
-    }
-
-    nav {
-      position: fixed;
-      top: 20px;
-      right: 40px;
-      z-index: 10;
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      margin: 0 10px;
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-    }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
-    header.hero {
-      height: 100vh;
-      background: url('images/artwork1.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .hero-text {
-      position: relative;
-      text-align: center;
-      z-index: 1;
-    }
-
-    .hero-text h1 {
-      font-size: 3em;
-      color: var(--gold);
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-    }
-
-    .hero-text p {
-      opacity: 0.8;
-      font-size: 1.1em;
-    }
-
-    section {
-      max-width: 950px;
-      margin: 100px auto;
-      padding: 0 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    section h2 {
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2em;
-      letter-spacing: 1px;
-    }
-
-    .gallery-filters {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .gallery-filters button {
-      background: none;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      padding: 6px 15px;
-      margin: 0 5px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .gallery-filters button:hover {
-      background: var(--gold);
-      color: var(--bg);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .gallery-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(212,175,55,0.3);
-    }
-
-    .theory-item {
-      margin-bottom: 40px;
-    }
-
-    .theory-item h3 {
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    #contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    #contact-form input,
-    #contact-form textarea {
-      background: #111;
-      border: none;
-      border-radius: 5px;
-      color: var(--text);
-      padding: 12px;
-      font-size: 1em;
-      font-family: 'IBM Plex Mono', monospace;
-    }
-
-    #contact-form button {
-      background: var(--gold);
-      border: none;
-      color: var(--bg);
-      font-weight: 600;
-      padding: 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    #contact-form button:hover {
-      transform: scale(1.05);
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid var(--gold);
-      opacity: 0.8;
-      font-size: 0.9em;
-      letter-spacing: 1px;
-    }
-
-    .overlay-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .overlay-modal img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(212,175,55,0.3);
-    }
   </style>
 </head>
 <body>
 
-<!-- Entry Screen -->
-<div id="intro-screen">
-  <h1>The Gate</h1>
-  <p>“What part of yourself do you silence to be understood?”</p>
-  <p>“If truth cost you your comfort, would you still want it?”</p>
-  <p>“Do you create to escape reality — or to expose it?”</p>
-  <button id="enter-site">Enter</button>
-</div>
+  <!-- Entry Screen -->
+  <div id="entry-screen">
+    <h1>Welcome — Before Entering, Reflect:</h1>
+    <div class="question">What part of yourself do you silence to be understood?</div>
+    <div class="question">If truth cost you your comfort, would you still want it?</div>
+    <div class="question">Do you create to escape reality — or to expose it?</div>
+    <button id="enter-btn">Enter</button>
+  </div>
 
-<!-- Main Site -->
-<div id="main-site">
-
-  <nav>
+  <!-- Navigation -->
+  <nav id="main-nav">
+    <a href="#homepage">Home</a>
     <a href="#gallery">Gallery</a>
-    <a href="#theories">Theories</a>
-    <a href="#inspiration">Inspiration</a>
+    <a href="#bio">Bio</a>
     <a href="#contact">Contact</a>
   </nav>
 
-  <header class="hero">
-    <div class="overlay"></div>
-    <div class="hero-text">
-      <h1>Nathan “BAS’” Evans</h1>
-      <p>Conceptual Artist & Philosopher</p>
-    </div>
-  </header>
+  <!-- Homepage -->
+  <section id="homepage">
+    <h1>Nathan “BAS’” Evans</h1>
+  </section>
 
+  <!-- Gallery -->
   <section id="gallery">
     <h2>Gallery</h2>
-    <div class="gallery-filters">
-      <button data-filter="all">All</button>
-      <button data-filter="painting">Paintings</button>
-      <button data-filter="drawing">Drawings</button>
-      <button data-filter="ceramic">Ceramics</button>
-      <button data-filter="mixed">Mixed Media</button>
-    </div>
     <div class="gallery-grid">
-      <img src="images/artwork1.jpg" data-category="painting" alt="Painting 1">
-      <img src="images/artwork2.jpg" data-category="drawing" alt="Drawing 1">
-      <img src="images/artwork3.jpg" data-category="mixed" alt="Mixed Media">
+      <div class="gallery-item">
+        <img src="art1.jpg" alt="Artwork 1">
+        <div class="info">
+          <h3>Title 1</h3>
+          <p>Medium | Year | Series</p>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="art2.jpg" alt="Artwork 2">
+        <div class="info">
+          <h3>Title 2</h3>
+          <p>Medium | Year | Series</p>
+        </div>
+      </div>
+      <!-- Add more gallery items here -->
     </div>
   </section>
 
-  <section id="theories">
-    <h2>Theories</h2>
-    <div class="theory-item">
-      <h3>Faith & Fear</h3>
-      <p>Exploring how belief and doubt coexist within the human soul...</p>
-    </div>
-    <div class="theory-item">
-      <h3>Identity & Guilt</h3>
-      <p>Unraveling how society and spirituality shape who we believe we are.</p>
-    </div>
+  <!-- Bio -->
+  <section id="bio">
+    <h2>Artist Bio</h2>
+    <p>
+      Nathan “BAS’” Evans (pronounced bazz) is an African American conceptual artist and philosopher based in Virginia. His work confronts the contradictions between faith, identity, and existence — investigating how belief, consciousness, and abandonment shape the human condition. Every piece begins on paper, where thought becomes physical and reflection turns into form. For Evans, paper is not merely a surface but a witness — the first site where language, theology, and psychology collide before finding shape on canvas.
+    </p>
+    <p>
+      Guided by inquiry rather than certainty, Evans transforms art into a field of confrontation — a dialogue between the divine and the disillusioned. His minimalist compositions and coded symbolism create visual theologies of doubt, revelation, and resistance. Through this process, Evans exposes the tension between what we confess and what we conceal — between the stories we inherit and the truths we fear to name.
+    </p>
+    <p>
+      His artistic mission is to dismantle illusion and awaken awareness. Evans aims to expose the structures that preserve spiritual and societal complacency, transforming them into opportunities for revelation. Each work stands as both scripture and rebellion — a visual act of faith in the pursuit of unfiltered truth.
+    </p>
   </section>
 
-  <section id="inspiration">
-    <h2>Inspiration & Fuel</h2>
-    <p>“Art is the lie that enables us to realize the truth.” — Pablo Picasso</p>
-    <p>“Faith is taking the first step even when you don’t see the whole staircase.” — Martin Luther King Jr.</p>
-    <p>Each word, sound, and silence that fuels the work.</p>
-  </section>
-
+  <!-- Contact -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>For collaborations, exhibitions, or philosophical dialogues:</p>
-    <form id="contact-form">
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Message" required></textarea>
+    <form>
+      <input type="text" name="name" placeholder="Name" required><br><br>
+      <input type="email" name="email" placeholder="Email" required><br><br>
+      <textarea name="message" placeholder="Message" required></textarea><br><br>
       <button type="submit">Send</button>
     </form>
-    <p>Instagram: <a href="https://instagram.com" target="_blank">@nathanbasevans</a></p>
   </section>
 
-  <footer>
-    © 2025 Nathan “BAS’” Evans — All Rights Reserved
-  </footer>
+  <script>
+    // Entry screen transition
+    const enterBtn = document.getElementById('enter-btn');
+    const entryScreen = document.getElementById('entry-screen');
+    const nav = document.getElementById('main-nav');
 
-</div>
-
-<script>
-  const introScreen = document.getElementById('intro-screen');
-  const mainSite = document.getElementById('main-site');
-  const enterBtn = document.getElementById('enter-site');
-
-  enterBtn.addEventListener('click', () => {
-    introScreen.style.opacity = 0;
-    setTimeout(() => {
-      introScreen.style.display = 'none';
-      mainSite.style.opacity = 1;
-    }, 800);
-  });
-
-  const fadeElements = document.querySelectorAll('section');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-      }
+    enterBtn.addEventListener('click', () => {
+      entryScreen.style.opacity = 0;
+      setTimeout(() => {
+        entryScreen.style.display = 'none';
+        nav.classList.add('show');
+      }, 1000);
     });
-  }, { threshold: 0.2 });
+  </script>
 
-  fadeElements.forEach(el => observer.observe(el));
-
-  const buttons = document.querySelectorAll('.gallery-filters button');
-  const images = document.querySelectorAll('.gallery-grid img');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
-      images.forEach(img => {
-        img.style.display = (filter === 'all' || img.dataset.category === filter) ? 'block' : 'none';
-      });
-    });
-  });
-
-  document.querySelectorAll(".gallery-grid img").forEach(img => {
-    img.addEventListener("click", () => {
-      const overlay = document.createElement("div");
-      overlay.className = "overlay-modal";
-      overlay.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
-      document.body.appendChild(overlay);
-      overlay.addEventListener("click", () => overlay.remove());
-    });
-  });
-</script>
 </body>
 </html>
