@@ -15,18 +15,19 @@
       --text: #111111;
     }
 
-    * { box-sizing: border-box; }
-
-    body {
+    html, body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
+      padding: 0;
+      background-color: var(--bg) !important;
       font-family: 'Fira Code', monospace;
+      color: var(--text);
       overflow-x: hidden;
       line-height: 1.7;
     }
 
-    /* Intro / “The Gate” */
+    * { box-sizing: border-box; }
+
+    /* Intro Screen */
     #intro-screen {
       position: fixed;
       inset: 0;
@@ -53,7 +54,7 @@
       margin-bottom: 25px;
       letter-spacing: 2px;
       font-family: 'Playfair Display', serif;
-      text-shadow: 0 0 10px var(--gold);
+      text-shadow: 0 0 12px var(--gold);
     }
 
     #intro-screen p {
@@ -120,7 +121,7 @@
 
     nav a:hover { opacity: 1; }
 
-    /* Hero / Homepage */
+    /* Hero */
     header.hero {
       height: 100vh;
       background: url('images/artwork1.jpg') center/cover no-repeat;
@@ -130,7 +131,11 @@
       position: relative;
     }
 
-    .overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.3); }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.35); /* lighter overlay */
+    }
 
     .hero-text {
       position: relative;
@@ -199,10 +204,7 @@
 
     /* Theories */
     .theory-item { margin-bottom: 40px; }
-    .theory-item h3 {
-      color: var(--accent2);
-      font-family: 'Playfair Display', serif;
-    }
+    .theory-item h3 { color: var(--accent2); font-family: 'Playfair Display', serif; }
 
     /* Contact */
     #contact-form {
@@ -222,16 +224,18 @@
       font-size: 1em;
     }
     #contact-form button {
-      background: var(--gold);
+      background: linear-gradient(45deg, var(--accent1), var(--accent2), var(--accent3));
       border: none;
       color: #111;
-      font-weight: 600;
+      font-weight: 700;
       padding: 12px;
       border-radius: 5px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-size: 300% 300%;
+      animation: gradientMove 4s ease infinite;
     }
-    #contact-form button:hover { transform: scale(1.05); }
+    #contact-form button:hover { transform: scale(1.05); box-shadow: 0 0 20px #00000033; }
 
     footer {
       text-align: center;
@@ -241,7 +245,7 @@
       font-size: 0.9em;
     }
 
-    /* Enlarge overlay */
+    /* Modal for images */
     .overlay-modal {
       position: fixed;
       inset: 0;
@@ -261,7 +265,6 @@
 </head>
 <body>
 
-<!-- Entry Screen -->
 <div id="intro-screen">
   <h1>The Gate</h1>
   <p>“What part of yourself do you silence to be understood?”</p>
@@ -270,7 +273,6 @@
   <button id="enter-site">Enter</button>
 </div>
 
-<!-- Main Site -->
 <div id="main-site">
   <nav>
     <a href="#gallery">Gallery</a>
